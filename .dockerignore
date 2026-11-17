@@ -1,0 +1,28 @@
+# Node dependencies & logs
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Git & CI/CD
+.git/
+.github/
+Jenkinsfile
+
+# Test results & Coverage
+coverage/
+.scannerwork/
+*.html
+
+# Docker files (prevent copying into container itself)
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# IDE & OS files
+.vscode/
+.idea/
+.DS_Store
+
+# Local environment variables
+.env

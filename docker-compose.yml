@@ -1,0 +1,53 @@
+services:
+  # 1. ShopEasy Microservice
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: shopeasy-app
+    ports:
+      - "8085:3000"
+    networks:
+      - devsecops-net
+    restart: unless-stopped
+
+  # 2. SonarQube Code Quality & Security Scanner
+  sonarqube:
+    image: sonarqube:community
+    container_name: devsecops-sonarqube
+    ports:
+      - "9000:9000"
+    networks:
+      - devsecops-net
+    environment:
+      - SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true
+    volumes:
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_extensions:/opt/sonarqube/extensions
+      - sonarqube_logs:/opt/sonarqube/logs
+    restart: unless-stopped
+
+  # 3. Jenkins CI/CD Automation Server
+  jenkins:
+    image: jenkins/jenkins:lts-jdk17
+    container_name: devsecops-jenkins
+    user: root
+    ports:
+      - "8081:8080"
+      - "50000:50000"
+    networks:
+      - devsecops-net
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
+
+networks:
+  devsecops-net:
+    driver: bridge
+
+volumes:
+  sonarqube_data:
+  sonarqube_extensions:
+  sonarqube_logs:
+  jenkins_home:
