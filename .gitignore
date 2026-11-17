@@ -1,0 +1,20 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+
+# Environment & Secrets
+.env
+*.pem
+
+# IDEs & System Files
+.DS_Store
+.vscode/
+.idea/
+
+# Coverage & Scans (SonarQube, Newman, k6 reports)
+.scannerwork/
+coverage/
+*.html
+*.json
+!package.json
+!postman/api-collection.json

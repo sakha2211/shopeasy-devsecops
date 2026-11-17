@@ -1,0 +1,17 @@
+{
+  "name": "shopeasy-microservice",
+  "version": "1.0.0",
+  "description": "Lightweight Node.js API for DevSecOps Pipeline",
+  "private": true,
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
