@@ -1,0 +1,16 @@
+# Step 1: Clone your repository
+git clone https://github.com/sakha2211/shopeasy-devsecops.git
+cd shopeasy-devsecops
+
+# Step 2: Start the DevSecOps stack
+docker compose up -d
+
+# Step 3: Install Docker & Kubectl inside Jenkins (one-time command)
+docker exec -u 0 devsecops-jenkins apt-get update
+docker exec -u 0 devsecops-jenkins apt-get install -y docker.io curl
+docker exec -u 0 devsecops-jenkins curl -LO "https://dl.k8s.io/release/v1.30.0/bin/linux/amd64/kubectl"
+docker exec -u 0 devsecops-jenkins install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+
+# Step 4: Login to SonarQube (http://localhost:9000), generate token, and save it in Jenkins Credentials as 'sonar-token'
+
+# Step 5: Open Jenkins (http://localhost:8081) -> shopeasy-pipeline -> Click 'Build Now'
