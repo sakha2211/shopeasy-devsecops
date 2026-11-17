@@ -7,7 +7,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install only production dependencies
-RUN npm ci --only=production
+RUN npm install --omit=dev
 
 # Stage 2: Minimal Runtime Stage
 FROM node:18-alpine AS runner
